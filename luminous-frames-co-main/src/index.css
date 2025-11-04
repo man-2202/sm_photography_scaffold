@@ -1,0 +1,332 @@
+/* Professional typography system:
+   - Montserrat: Modern, elegant sans-serif for UI and body text
+   - Playfair Display: Sophisticated serif for headlines and brand
+   - Crimson Text: Classic serif for elegant body text
+*/
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* Disable the at-rule-no-unknown rule around Tailwind's at-rules so stylelint doesn't report them as unknown */
+ /* stylelint-disable at-rule-no-unknown */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+ /* stylelint-enable at-rule-no-unknown */
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Natural green & cream theme: Colorhunt palette
+       Colors: #fffdf6, #faf6e9, #ddeb9d, #a0c878
+       Converted to HSL for tokens:
+       #fffdf6 -> hsl(48 100% 99%)
+       #faf6e9 -> hsl(48 56% 94%)
+       #ddeb9d -> hsl(68 62% 77%)
+       #a0c878 -> hsl(88 44% 57%)
+    */
+    --background: 48 100% 99%; /* light cream base */
+    --foreground: 88 20% 15%; /* dark green text */
+
+    --card: 48 56% 98%;
+    --card-foreground: 88 20% 15%;
+
+    --popover: 48 56% 97%;
+    --popover-foreground: 88 20% 15%;
+
+    --primary: 88 44% 57%; /* medium green */
+    --primary-foreground: 48 100% 99%;
+
+    --secondary: 68 62% 77%; /* light lime green */
+    --secondary-foreground: 88 20% 25%;
+
+    --muted: 48 30% 92%;
+    --muted-foreground: 88 15% 45%;
+
+    --accent: 68 62% 77%; /* light lime green accent */
+    --accent-foreground: 88 20% 25%;
+
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 68 40% 85%;
+    --input: 48 40% 93%;
+    --ring: 88 44% 57%;
+
+    --radius: 0.75rem; /* smoother rounded corners */
+    /* Natural styling */
+    --gold: 47 90% 52%;
+    --charcoal: 88 20% 15%;
+    --gradient-overlay: linear-gradient(180deg, rgba(160,200,120,0.18), rgba(160,200,120,0.28));
+    --gradient-sea: linear-gradient(135deg, hsl(88 44% 57%) 0%, hsl(68 62% 77%) 100%);
+    --shadow-soft: 0 8px 28px rgba(160,200,120,0.08);
+    --shadow-medium: 0 14px 46px rgba(160,200,120,0.12);
+    --shadow-glow: 0 6px 30px rgba(221,235,157,0.12);
+    
+    /* Transitions */
+    --transition-smooth: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-quick: all 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark mode: deep natural tones */
+    --background: 88 15% 8%;
+    --foreground: 48 30% 95%;
+
+    --card: 88 18% 10%;
+    --card-foreground: 48 30% 95%;
+
+    --popover: 88 18% 10%;
+    --popover-foreground: 48 30% 95%;
+
+    --primary: 88 44% 57%;
+    --primary-foreground: 48 100% 99%;
+
+    --secondary: 68 62% 67%;
+    --secondary-foreground: 88 20% 15%;
+
+    --muted: 88 25% 12%;
+    --muted-foreground: 68 30% 70%;
+
+    --accent: 68 62% 67%;
+    --accent-foreground: 88 20% 15%;
+
+    --destructive: 10 80% 45%;
+    --destructive-foreground: 48 30% 95%;
+
+    --border: 88 25% 12%;
+    --input: 88 25% 14%;
+    --ring: 88 44% 57%;
+  }
+}
+
+@layer base {
+  * {
+    /* apply default border color using the design token */
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    /* background and foreground from design tokens */
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    /* Professional typography */
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    /* font smoothing equivalent to Tailwind's antialiased */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Typography styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
+  }
+
+  /* Paragraph text with elegant serif for emphasis */
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+  }
+}
+@layer utilities {
+  .section-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }
+  
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-0.25rem);
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }
+  
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-0.25rem);
+  }
+
+  /* Cinematic overlay utility — use for hero/background overlays */
+  .cinematic-overlay {
+    background: var(--gradient-overlay);
+    mix-blend-mode: overlay;
+  }
+
+  /* Booking page styles */
+  .booking-page {
+    background-image: linear-gradient(180deg, rgba(8,10,16,0.35), rgba(8,10,16,0.6));
+    background-blend-mode: overlay;
+  }
+
+  .booking-hero {
+    background: linear-gradient(90deg, rgba(0,0,0,0.25), transparent), url('/assets/hero-image-CtdrqH3d.jpg');
+    background-size: cover;
+    background-position: center;
+    color: hsl(var(--foreground));
+  }
+
+  .service-card {
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-medium); }
+
+  /* Navigation link styling for elegant menu */
+  .nav-link {
+    position: relative;
+    color: hsl(88 30% 20%);
+    transition: all var(--transition-quick);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .nav-link:hover {
+    color: hsl(88 44% 45%);
+  }
+
+  /* Fade-in for overlays and menus */
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(-6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in { animation: fade-in 280ms var(--transition-quick) both; }
+
+  /* Elegant menu/button treatment */
+  .menu-button {
+    border-radius: calc(var(--radius) + 0.25rem);
+    padding: .6rem;
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow var(--transition-smooth), transform var(--transition-smooth), background var(--transition-quick);
+  }
+  .menu-button:hover { box-shadow: var(--shadow-medium), var(--shadow-glow); transform: translateY(-2px); }
+
+  /* small utility for subtle text glow on hover */
+  .glow-on-hover:hover { text-shadow: 0 6px 30px rgba(221,235,157,0.12); }
+
+  .booking-form input, .booking-form select, .booking-form textarea {
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--border));
+  }
+
+  .booking-form .shadow-medium { box-shadow: var(--shadow-medium); }
+
+  /* Animations and colorful UI utilities */
+  @keyframes float-up {
+    0% { transform: translateY(8px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 rgba(160,200,120,0.0); }
+    50% { box-shadow: 0 6px 24px rgba(160,200,120,0.12); }
+    100% { box-shadow: 0 0 0 rgba(160,200,120,0.0); }
+  }
+
+  .animate-float-up { animation: float-up 0.6s ease-out both; }
+  .animate-pulse-glow { animation: pulse-glow 2.4s ease-in-out infinite; }
+
+  /* Colorful CTA variant */
+  .btn-sea {
+    background: var(--gradient-sea);
+    color: hsl(var(--primary-foreground));
+    border: none;
+    transition: transform 0.28s cubic-bezier(.2,.9,.3,1), box-shadow 0.28s;
+  }
+  .btn-sea:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(160,200,120,0.14); }
+
+  /* Service card colorful accent */
+  .service-card-accent { position: relative; overflow: hidden; }
+  .service-card-accent::before {
+    content: '';
+    position: absolute; inset: -40% -40% auto auto; width: 180%; height: 60%;
+    background: linear-gradient(90deg, rgba(160,200,120,0.08), rgba(221,235,157,0.06));
+    transform: rotate(-12deg);
+    transition: transform 0.6s ease;
+  }
+  .service-card-accent:hover::before { transform: rotate(-6deg) translateY(-6px); }
+
+  /* Form input focus glow */
+  .focus-sea:focus { box-shadow: 0 6px 18px rgba(160,200,120,0.08); border-color: hsl(var(--primary)); outline: none; }
+}

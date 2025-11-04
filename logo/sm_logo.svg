@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#6b21a8"/>
+    </linearGradient>
+    <style>
+      .s{font-family:Inter, -apple-system, Roboto, 'Helvetica Neue', Arial; font-weight:700}
+    </style>
+  </defs>
+  <text x="8" y="86" font-size="72" class="s" fill="url(#g)">S</text>
+  <text x="78" y="86" font-size="72" class="s" fill="#111827">M</text>
+  <text x="170" y="94" font-size="18" fill="#374151">PHOTOGRAPHY</text>
+</svg>
